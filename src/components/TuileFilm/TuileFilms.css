@@ -1,0 +1,14 @@
+.tuile-film {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 300px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    background-color: rgb(240, 234, 234);
+}
+
+.info{
+    padding: 1vw;
+    text-decoration: none;
+}

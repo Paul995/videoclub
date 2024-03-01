@@ -1,0 +1,20 @@
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.tuiles-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 4vw;
+    border: 3px solid black;
+    border-radius: 5px;
+    padding: 2vw;
+    background-color: rgb(59, 57, 75);
+    
+}
+
+
