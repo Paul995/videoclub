@@ -1,12 +1,16 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import TuileFilm from "../TuileFilm/TuileFilms";
+import { useEffect, useState, useContext } from "react";
+import { AppContext } from '../App/App';
 import "./Film.css";
 
 import * as React from "react";
 import { Routes, Route, useParams } from "react-router-dom";
 
 function Film() {
+
+  let context = useContext(AppContext);
+
+
+
   // Get the userId param from the URL.
   let { id } = useParams();
   //console.log(id);
@@ -93,6 +97,16 @@ function Film() {
       .then((data) => {
         console.log(data);
       });
+  }
+
+  //comentaires
+
+  let blockAjoutCommentaire;
+  if(context.estLog){
+    blockAjoutCommentaire = <form>
+      <textarea placeholder="Ajouter votre commentaire"></textarea>
+      <button>Soumettre</button>
+    </form>
   }
 
   return (
