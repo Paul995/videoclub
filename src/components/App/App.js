@@ -26,7 +26,7 @@ function App() {
     e.preventDefault();
 
     if (e.target.usager.value == "admin") {
-      e.target.reset();
+     
       // setEstLog(prevEstLog => !prevEstLog)
       //                       ca change juste ceux ici car spread operator
       setLogging((logging) => ({
@@ -34,7 +34,15 @@ function App() {
         estLog: true,
         usager: e.target.usager.value,
       }));
+       e.target.reset();
     }
+  }
+
+  function logout(){
+    setLogging({
+      estLog: false,
+      usager: ""
+    });
   }
 
   return (
@@ -43,7 +51,7 @@ function App() {
       {/* // ici vu que cest de linfo qui devra etre utilisee dans plusieurs components */}
       <Router>
         {/* <Entete handleLogin={login} estLog={estLog}/> */}
-        <Entete handleLogin={login} logging={logging} />
+        <Entete handleLogin={login} logging={logging} handleLogout={logout} />
         <Routes>
           <Route path="/" element={<Accueil />} />
           <Route path="/liste-films" element={<ListeFilms />} />

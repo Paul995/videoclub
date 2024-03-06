@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import TuileFilm from "../TuileFilm/TuileFilms";
+import TuileFilm from "../TuileFilm/TuileFilm";
 import Film from "../Film/Film";
 import "./ListeFilms.css";
 import Filtres from "../Filtres/Filtres"
@@ -15,8 +15,8 @@ function ListeFilms() {
   //   { titre: "Film3", realisateur: "bilsddfsdfsy", annee: 2001 },
   // ];
 
-  //const urlListeFilms = "https://four1f-node-api.onrender.com/films";
-  const urlListeFilms = "data/titre-asc.json";
+  const urlListeFilms = "https://four1f-node-api.onrender.com/films";
+  //const urlListeFilms = "data/titre-asc.json";
   const [urlFiltre, setUrlFiltre] = useState([urlListeFilms]);
   const [listeFilms, setListeFilms] = useState([]);
 
