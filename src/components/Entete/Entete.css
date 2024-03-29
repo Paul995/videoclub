@@ -1,6 +1,7 @@
 header{
     display: flex;
-    background-color: rgb(209, 228, 245);
+    background-color: black;
+    color: white;
     margin-bottom: 40px;
     padding: 10px ;
     border-bottom: 1px solid black;
@@ -8,7 +9,21 @@ header{
     justify-content: space-around;
 }
 
+nav{
+    display: flex;
+    gap: 2vw;
+}
 
 nav a{
     text-decoration: none;
+    color: white;
 } 
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+button{
+    cursor: pointer;
+}

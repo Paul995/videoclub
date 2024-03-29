@@ -6,6 +6,7 @@
 
 /*GENERIC*/
 @import url('./styles/3-generic/reset.css');
+@import url('./styles/3-generic/generic.css');
 
 /*ELEMENTS*/
 @import url('./styles/4-elements/typographie.css');
@@ -16,3 +17,4 @@
 @import url('./styles/5-objects/wrapper.css');
 
 /*UTILITIES*/
+

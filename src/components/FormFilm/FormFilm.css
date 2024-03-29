@@ -1,0 +1,17 @@
+.wrapper{
+    color: white;
+}
+.input{
+    display:flex;
+    flex-wrap: wrap;
+    gap:1rem;
+    margin: 1rem 0;
+}
+
+form .valid{
+    color: white;
+}
+
+form .invalide{
+    color: rgb(236, 99, 99);
+}

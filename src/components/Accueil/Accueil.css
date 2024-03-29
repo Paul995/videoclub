@@ -1,0 +1,27 @@
+
+@keyframes fadeInOpacity {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0.9;
+    }
+}
+
+.accueil {
+    color: white;
+    background-color: rgba(37, 37, 37, 0.99); 
+    padding: 10px 25px;
+    border-radius: 10px;
+    font-size: 20px;
+    z-index: 2;
+    margin-top: 10vh;
+    animation: fadeInOpacity 1.3s ease-out forwards; 
+}
+
+.hero-container{
+    width: 100vw;
+    position: absolute;
+    margin-top: -40px;
+    margin-left: -38px;
+}

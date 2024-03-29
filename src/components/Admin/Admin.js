@@ -5,7 +5,8 @@ function Admin() {
 
   return (
     <main>
-      Admin page
+      
+     <h1 className='h'>Admin page</h1> 
 
     </main>
   );

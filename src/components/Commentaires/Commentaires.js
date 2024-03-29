@@ -1,68 +1,50 @@
+import "./Commentaires.css";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useContext } from "react";
+import { FilmContext } from "../Film/Film";
+import { useParams } from "react-router-dom";
 
-import './Commentaires.css';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { useContext } from 'react';
-import { FilmContext } from '../Film/Film';
-import { useParams } from 'react-router-dom';
+function Commentaires(props) {
+  let { id } = useParams();
 
-function Commentaires() {
+  const urlFilm = `http://localhost:3301/api/films/${id}`;
 
-  
-
-    let { id } = useParams();
-
-    const urlFilm = `https://four1f-node-api.onrender.com/films/${id}`;
-
-   
-    const [listeCommentaires, setListeCommentaires] = useState([]);
+  const [listeCommentaires, setListeCommentaires] = useState(
+    props.commentaires
+  );
 
 
-    useEffect(() => {
-     
-        fetch(urlFilm)
-          .then((reponse) => reponse.json())
-          .then((data) => {
-            setListeCommentaires(data);
+  useEffect(() => {
+    if (props.commentaires) {
+      // pour changer seuelement dernier truc au lieu de reafficher tout les comments
+      setListeCommentaires(() => [...props.commentaires]);
+    }
+  }, [props.commentaires]);
 
-            if (data.commentaires) {
-                setListeCommentaires(data.commentaires);
-                   
-              console.log(listeCommentaires);
-               
-                }else{
-                  setListeCommentaires([])
-                };
-      
-          });
-      }, []);
+  //console.log(listeCommentaires);
 
-
- if(listeCommentaires.length > 0){
-      return(
-       
-        <div className='coms-container'>
-           {listeCommentaires.map((commentaire, index) => (
-                  <div key={index} className='ind-com'>
-                      <p className='com'>
-                        <strong>{commentaire.commentaire}</strong>
-                    </p>
-                    <p>
-                      user: {commentaire.auteur || commentaire.usager}
-                    </p>
-                  </div>
-                ))}
-        </div>
+  if (listeCommentaires) {
+    return (
+      <div className="coms-container">
+        {listeCommentaires.map((commentaire, index) => (
           
-      );
- }else{
-  return(
-    <div className='coms-container'>
-      <p>Il n'y a pas encore de commentaires pour ce film.</p>
-    </div>
-  )
- }
-   
+          <div key={index} className="ind-com">
+            <p className="com">
+              <strong>{commentaire.commentaire}</strong>
+            </p>
+            <p>user: {commentaire.auteur || commentaire.usager}</p>
+          </div>
+        ))}
+      </div>
+    );
+  } else {
+    return (
+      <div className="coms-container">
+        <p>Il n'y a pas encore de commentaires pour ce film.</p>
+      </div>
+    );
+  }
 }
 
 export default Commentaires;

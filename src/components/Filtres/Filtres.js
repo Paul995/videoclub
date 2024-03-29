@@ -2,17 +2,22 @@
 import './Filtres.css';
 
 function Filtres(props) {
+
+
+
    
   return (  
-    <ul>
-    {/* pour changer lurl au click */}
-        <li onClick={props.handleFiltres}>Titre - alphabetique A-Z</li>
-        <li onClick={props.handleFiltres}>Titre - alphabetique Z-A</li>
-        <li onClick={props.handleFiltres}>Realisateurs - alphabetique A-Z</li>
-        <li onClick={props.handleFiltres}>Realisateurs - alphabetique Z-A</li>
-        <li onClick={props.handleFiltres}>Par année - alphabetique (plus r&eacute;cent)</li>
-        <li onClick={props.handleFiltres}>Par année - alphabetique (plus ancien)</li>
-        </ul>
+    <div className='select-wrapper'>
+       <select id='filtres' onChange={props.handleFiltres}>
+      <option disabled selected>-- Filtres --</option>
+      <option value="titre-asc">Titre - alphabétique A-Z</option>
+      <option value="titre-desc">Titre - alphabétique Z-A</option>
+      <option value="realisation-asc">Réalisateurs - alphabétique A-Z</option>
+      <option value="realisation-desc">Réalisateurs - alphabétique Z-A</option>
+      <option value="annee-desc">Par année - le plus récent</option>
+      <option value="annee-asc">Par année - le plus ancien</option>
+    </select>
+    </div>
   );
 }
 
