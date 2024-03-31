@@ -15,7 +15,7 @@ function Entete(props) {
         {/* {props.estLog ? <NavLink to="/admin">Admin</NavLink> : ""}  */}
         {context.estLog ? (
           <nav>
-            <NavLink to="/admin">Profile</NavLink>
+            <NavLink to="/admin">Profil</NavLink>
             <NavLink to="/admin/ajout-film">Ajouter un Film</NavLink>
           </nav>
         ) : (

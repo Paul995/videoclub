@@ -61,11 +61,11 @@ function Film() {
           fetch(urlFilm, oOptions)
             .then(response => response.json())
             .then(updatedFilm => {
-           //   console.log('Notes updated', updatedFilm);
+              console.log('Notes updated', updatedFilm);
             
             }).catch(error => {
            
-         //     console.error('Erreur:', error);
+              console.error('Erreur:', error);
           
             });
         }
@@ -253,7 +253,6 @@ if (context.estLog) {
 }
 
 async function deleteFilm() {
-  console.log(id);
 
   // Vous pouvez ajouter des confirmations ou des vérifications supplémentaires ici
   const confirmDelete = window.confirm("Êtes-vous sûr de vouloir supprimer ce film ?");
@@ -261,30 +260,39 @@ async function deleteFilm() {
     return;
   }
 
-  const url = `http://localhost:3301/api/films/${id}`; // Utilisez l'ID du film depuis useParams
+  const url = `http://localhost:3301/api/films/${id}`; 
 console.log(url);
+ 
+ const token = localStorage.getItem('API-films'); 
 
- // Récupérer le token du localStorage
- const token = localStorage.getItem('API-films'); // Assurez-vous que c'est le bon nom de clé
 
+ console.log(token);
 
   try {
     const response = await fetch(url, {
       method: "DELETE",
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`, // Ajouter le token dans le header Authorization
+        'Authorization': `Bearer ${token}`, 
       },
     });
 
-    console.log("fghgfhgfhfgh");
+    if (response.status === 401) { // Si non autorisé (token expiré)
+      // Option 1: Tenter de rafraîchir le token ici
+      // Option 2: Demander à l'utilisateur de se reconnecter
+      alert("Session expirée, veuillez vous reconnecter.");
+      window.location.href = '/';
+      return;
+  }
+
+   
     if (!response.ok) {
       throw new Error('Erreur lors de la suppression du film');
     }
-    // Gestion après la suppression réussie, par exemple rediriger l'utilisateur ou afficher un message
+   
     alert('Film supprimé avec succès');
-    // Redirection ou mise à jour de l'état ici...
-    navigate('/liste-films'); // Redirection vers la liste des films
+  
+    navigate('/liste-films'); 
 
   } catch (error) {
     alert('Une erreur est survenue lors de la suppression du film.');

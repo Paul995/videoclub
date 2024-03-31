@@ -35,8 +35,6 @@ function ListeFilms() {
       .then((reponse) => reponse.json())
       .then((data) => {
         setListeFilms(data);
-        console.log(data);
-
         setEstCharge(true); //pour le wait du animation framer
       });
   }, [urlFiltre]); //une seule fois lors du premier rendu quand on met un [] ici. sinon la var dans le [] est ce qui est ecoute pour changer

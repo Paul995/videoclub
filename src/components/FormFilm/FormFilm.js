@@ -1,4 +1,5 @@
 import "./FormFilm.css";
+import React from 'react';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -27,7 +28,8 @@ function FormFilm() {
 
   const [formValidity, setFormValidity] = useState("invalid");
 
-  
+  const navigate = useNavigate();
+
 
   // fctn qui update lobj FormData au click du changement de champs form
   function onFormDataChange(e) {
@@ -52,7 +54,6 @@ function FormFilm() {
         });
       } else if (estCoche && !genres.includes(value)) {
         genres.push(value);
-      
       }
 
       const donneesModifiee = { ...formData, genres };
@@ -76,7 +77,6 @@ function FormFilm() {
   }
 
 
-
   //                      e obligatoire
   async function onFormSubmit(e) {
     e.preventDefault(); // empeche le submit par defaut pour customizer
@@ -86,6 +86,8 @@ function FormFilm() {
       e.target.reportValidity();
       return;
     }
+
+
     //prepare la donnee
     const data = {
       method: "POST",
@@ -99,6 +101,8 @@ function FormFilm() {
     // submit
     const req = await fetch("http://localhost:3301/api/films", data);
     const res = await req.json();
+
+    console.log(req.status);
     //gere le reponse du form
     if (req.status === 200) {
       //afficher un message de success
@@ -112,15 +116,17 @@ function FormFilm() {
         genres: [],
         titreVignette: "vide.jpg",
       });
-
+    
       //reset etat de la validite
       setFormValidity("invalid");
+      navigate('/liste-films'); 
     } else {
       const messageErreur = res.erreur;
       console.log("erreur ", messageErreur);
+        
+        navigate('/liste-films'); 
     }
   }
-
 
   
   return (
@@ -174,61 +180,6 @@ function FormFilm() {
               onChange={onFormDataChange}
             ></input>
           </div>
-          {/* <div className="input genres">
-                        <label htmlFor="genres">Genres :</label>
-                        <div>
-                            <input type="checkbox" id="action" name="genresAction" value="Action" onChange={onFormDataChange} />
-                            <label htmlFor="action">Action</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="aventure" name="genresAventure" value="Aventure" onChange={onFormDataChange} />
-                            <label htmlFor="aventure">Aventure</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="animation" name="genresAnimation" value="Animation" onChange={onFormDataChange} />
-                            <label htmlFor="animation">Animation</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="comedie" name="genresComedie" value="Comédie" onChange={onFormDataChange} />
-                            <label htmlFor="comedie">Comédie</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="crime" name="genresCrime" value="Crime" onChange={onFormDataChange} />
-                            <label htmlFor="crime">Crime</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="drame" name="genresDrame" value="Drame" onChange={onFormDataChange} />
-                            <label htmlFor="drame">Drame</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="famille" name="genresFamille" value="Famille" onChange={onFormDataChange} />
-                            <label htmlFor="famille">Famille</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="fantaisie" name="genresFantaisie" value="Fantaisie" onChange={onFormDataChange} />
-                            <label htmlFor="fantaisie">Fantaisie</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="horreur" name="genresHorreur" value="Horreur" onChange={onFormDataChange} />
-                            <label htmlFor="horreur">Horreur</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="musical" name="genresMusical" value="Musical" onChange={onFormDataChange} />
-                            <label htmlFor="musical">Musical</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="mystere" name="genresMystere" value="Mystère" onChange={onFormDataChange} />
-                            <label htmlFor="mystere">Mystère</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="scienceFiction" name="genresScienceFiction" value="Science-Fiction" onChange={onFormDataChange} />
-                            <label htmlFor="scienceFiction">Science-Fiction</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="thriller" name="genresThriller" value="Thriller" onChange={onFormDataChange} />
-                            <label htmlFor="thriller">Thriller</label>
-                        </div>
-                    </div> */}
           <div className="input">
             <label htmlFor="titreVignette">Image : </label>
             <input
